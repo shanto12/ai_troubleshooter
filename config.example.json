@@ -1,0 +1,38 @@
+# Server Troubleshooting AI Tool Configuration
+# Copy this to config.json and customize
+
+{
+    "ai_config": {
+        "external_provider": "openai",
+        "api_key": "YOUR_API_KEY_HERE",
+        "local_model": "gemma:7b",
+        "ollama_url": "http://localhost:11434"
+    },
+    "default_commands": {
+        "system_health": [
+            "uptime",
+            "df -h",
+            "free -h",
+            "ps aux --sort=-%cpu | head -20",
+            "systemctl --failed"
+        ],
+        "network_diagnostics": [
+            "netstat -tuln",
+            "ss -tuln", 
+            "ip route show",
+            "ping -c 4 8.8.8.8"
+        ],
+        "log_analysis": [
+            "journalctl -xe --no-pager -n 50",
+            "tail -50 /var/log/syslog",
+            "dmesg | tail -20"
+        ]
+    },
+    "security_settings": {
+        "allow_write_operations": false,
+        "require_confirmation_for_restarts": true,
+        "log_all_commands": true,
+        "sanitize_ip_addresses": true,
+        "sanitize_user_data": true
+    }
+}
